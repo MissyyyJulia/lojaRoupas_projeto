@@ -23,3 +23,5 @@ O sistema deve ser capaz de listar vendas filtradas por parte do nome do funcion
 O sistema deve ser capaz de listar os 10 produtos mais caros do cadastro.
 O sistema deve ser capaz de listar os clientes com idade entre 18 e 35 anos.
 O sistema deve ser capaz de listar as 10 vendas com totais mais altos.
+
+*O projeto tem commit único.
