@@ -1,6 +1,4 @@
-# lojaVendasProjeto1_4periodo
-PROJETO 01 - BACK-END COM FRAMEWORKS (SPRING) PROF. WELLINGTON DE OLIVEIRA
-
+#BACK-END COM FRAMEWORKS (SPRING) PROF. WELLINGTON DE OLIVEIRA
 
 # exercício de fixação sts4 e postman | loja de roupas
 
