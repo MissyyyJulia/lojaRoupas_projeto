@@ -28,14 +28,14 @@ conteúdos vistos em sala de aula acerca de desenvolvimento back-end com spring
 
 ### validation
 - a observação da venda é um campo obrigatório ✅
-- uma venda pode ou não ter um funcionário vinculado, mas sempre precisa ter um cliente vinculado ⏳
-- em uma venda a lista de produtos associados jamais pode estar vazia ⏳
+- uma venda pode ou não ter um funcionário vinculado, mas sempre precisa ter um cliente vinculado ✅
+- em uma venda a lista de produtos associados jamais pode estar vazia ✅
 - o nome do produto é campo obrigatório, já a descrição não ✅
 - as idades dos clientes e funcionários não podem ser negativas ✅
-- o endereço é um campo obrigatório ⏳
-- o e-mail do cliente/funcionário deve ser válido ⏳
-- o cpf do cliente/funcionário deve ser válido ⏳
-- o cep do cliente deve seguir o padrão de cep brasileiro ⏳
+- o endereço é um campo obrigatório ✅
+- o e-mail do cliente/funcionário deve ser válido ✅
+- o cpf do cliente/funcionário deve ser válido ✅
+- o cep do cliente deve seguir o padrão de cep brasileiro ✅
 - o nome do cliente deve conter pelo menos 2 palavras e um espaço ⏳
 - os telefones devem seguir o padrão (XX) XXXX-XXXX ou (XX) XXXXX-XXXX ⏳
 - ao salvar uma venda, caso o cliente seja menor de 18 anos, o valor total máximo deve ser de 500 reais. caso o valor esteja acima, não permita a persistência ⏳
