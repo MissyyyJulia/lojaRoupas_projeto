@@ -32,6 +32,8 @@ public class VendaController {
 			return new ResponseEntity<>(mensagem, HttpStatus.OK);
 
 		} catch (Exception e) {
+			System.out.println(e.getMessage());
+			e.printStackTrace();
 			return new ResponseEntity<>(null, HttpStatus.BAD_REQUEST);
 		}
 	}

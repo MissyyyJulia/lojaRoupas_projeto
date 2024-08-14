@@ -29,13 +29,15 @@ public class Venda {
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private long id;
 
-	@ManyToOne(cascade = CascadeType.ALL)
+	@ManyToOne
+	@JsonIgnoreProperties("vendas")
 	private Cliente cliente;
 
-	@ManyToOne(cascade = CascadeType.ALL)
+	@ManyToOne
+	@JsonIgnoreProperties("vendas")
 	private Funcionario funcionario;
 
-	@ManyToMany(cascade = CascadeType.ALL)
+	@ManyToMany(cascade = CascadeType.MERGE)
 	@JoinTable(name = "produtos_no_pedido")
 	@JsonIgnoreProperties("vendas")
 	private List<Produto> produtos;

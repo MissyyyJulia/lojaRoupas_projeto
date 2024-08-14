@@ -16,29 +16,22 @@ public class VendaService {
 	@Autowired
 	VendaRepository vendaRepository;
 
+	@Autowired
+	ProdutoService produtoService;
+
 	public String save(Venda venda) {
-
-		double valorTotal = 0.0;
-		for (Produto produto : venda.getProdutos()) {
-			valorTotal += produto.getPreco();
-		}
+		
+		double valorTotal = this.calcularTotal(venda.getProdutos());
 		venda.setValorTotal(valorTotal);
-
 		this.vendaRepository.save(venda);
-
 		return "Venda cadastrada com sucesso.";
 
 	}
 
 	public String update(Venda venda, long id) {
 		venda.setId(id);
-
-		double valorTotal = 0.0;
-		for (Produto produto : venda.getProdutos()) {
-			valorTotal += produto.getPreco();
-		}
+		double valorTotal = this.calcularTotal(venda.getProdutos());
 		venda.setValorTotal(valorTotal);
-
 		this.vendaRepository.save(venda);
 		return "Venda Atualizada com sucesso.";
 	}
@@ -60,6 +53,17 @@ public class VendaService {
 	public String delete(long id) {
 		this.vendaRepository.deleteById(id);
 		return "Venda deletada com sucesso!";
+	}
+
+	private double calcularTotal(List<Produto> produtos) {
+		double valorTotal = 0;
+
+		for (Produto p : produtos) {
+			Produto produto = this.produtoService.findById(p.getId());
+			valorTotal += produto.getPreco();
+		}
+
+		return valorTotal;
 	}
 
 	public List<Venda> findByCliente(String nome) {
