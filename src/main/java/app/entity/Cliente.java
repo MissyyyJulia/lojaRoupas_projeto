@@ -9,6 +9,8 @@ import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.persistence.OneToMany;
+import jakarta.validation.constraints.Email;
+import jakarta.validation.constraints.Min;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -26,9 +28,15 @@ public class Cliente {
     private long id;
     
     private String nome;
+    
+    @Min(1)
     private int idade;
+    
     private String telefone;
+    
+    @Email
     private String email;
+    
     private String endereco;
     
    @OneToMany(mappedBy = "cliente")
