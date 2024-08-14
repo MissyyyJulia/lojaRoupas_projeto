@@ -27,11 +27,11 @@ conteúdos vistos em sala de aula acerca de desenvolvimento back-end com spring
 - o sistema deve ser capaz de listar as 10 vendas com totais mais altos ✅
 
 ### validation
-- a observação da venda é um campo obrigatório ⏳
+- a observação da venda é um campo obrigatório ✅
 - uma venda pode ou não ter um funcionário vinculado, mas sempre precisa ter um cliente vinculado ⏳
 - em uma venda a lista de produtos associados jamais pode estar vazia ⏳
-- o nome do produto é campo obrigatório, já a descrição não ⏳
-- as idades dos clientes e funcionários não podem ser negativas ⏳
+- o nome do produto é campo obrigatório, já a descrição não ✅
+- as idades dos clientes e funcionários não podem ser negativas ✅
 - o endereço é um campo obrigatório ⏳
 - o e-mail do cliente/funcionário deve ser válido ⏳
 - o cpf do cliente/funcionário deve ser válido ⏳
