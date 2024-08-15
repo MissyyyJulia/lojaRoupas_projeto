@@ -19,20 +19,14 @@ public class VendaService {
 
 	@Autowired
 	ProdutoService produtoService;
-	
+
 	@Autowired
 	ClienteService clienteService;
-	
 
 	public String save(Venda venda) {
-		venda.setValorTotal(this.calcularTotal(venda.getProdutos()));
-		
-		if(idadeCliente(venda.getCliente())) {
-			if(venda.getValorTotal() > 500) {
-				throw new RuntimeException("Cliente menor de idade não pode comprar acima de 500 reais");
-			}
+		if (passouValorMax(venda)) {
+			throw new RuntimeException("Cliente menor de idade não pode comprar acima de 500 reais");
 		}
-		
 		this.vendaRepository.save(venda);
 		return "Venda cadastrada com sucesso.";
 
@@ -74,16 +68,17 @@ public class VendaService {
 
 		return valorTotal;
 	}
-	
-	private boolean idadeCliente (Cliente cliente) {
-		cliente = this.clienteService.findById(cliente.getId());
-		if(cliente.getIdade() < 18) {
+
+	private boolean passouValorMax(Venda venda) {
+		venda.setValorTotal(this.calcularTotal(venda.getProdutos()));
+		Cliente cliente = this.clienteService.findById(venda.getCliente().getId());
+		if (cliente.getIdade() < 18 && venda.getValorTotal() > 500) {
 			return true;
-		} else {
-			return false;
 		}
+		return false;
+
 	}
-	
+
 	public List<Venda> findByCliente(String nome) {
 		return this.vendaRepository.findByClienteNomeContaining(nome);
 	}
