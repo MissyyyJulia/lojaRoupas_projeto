@@ -36,6 +36,6 @@ conteúdos vistos em sala de aula acerca de desenvolvimento back-end com spring
 - o e-mail do cliente/funcionário deve ser válido ✅
 - o cpf do cliente/funcionário deve ser válido ✅
 - o cep do cliente deve seguir o padrão de cep brasileiro ✅
-- o nome do cliente deve conter pelo menos 2 palavras e um espaço ⏳
-- os telefones devem seguir o padrão (XX) XXXX-XXXX ou (XX) XXXXX-XXXX ⏳
-- ao salvar uma venda, caso o cliente seja menor de 18 anos, o valor total máximo deve ser de 500 reais. caso o valor esteja acima, não permita a persistência ⏳
+- o nome do cliente deve conter pelo menos 2 palavras e um espaço  ✅
+- os telefones devem seguir o padrão (XX) XXXX-XXXX ou (XX) XXXXX-XXXX ✅
+- ao salvar uma venda, caso o cliente seja menor de 18 anos, o valor total máximo deve ser de 500 reais. caso o valor esteja acima, não permita a persistência ✅
