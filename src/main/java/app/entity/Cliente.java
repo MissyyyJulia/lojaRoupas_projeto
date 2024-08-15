@@ -31,6 +31,7 @@ public class Cliente {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private long id;
     
+    @Pattern(regexp = "\\b\\w+\\b\\s+\\b\\w+\\b")
     private String nome;
     
     @Min(1)
@@ -39,6 +40,7 @@ public class Cliente {
     @CPF
     private String cpf;
     
+    @Pattern(regexp = "^\\(\\d{2}\\) \\d{4,5}-\\d{4}$")
     private String telefone;
     
     @Email

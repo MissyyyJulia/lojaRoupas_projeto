@@ -6,6 +6,7 @@ import java.util.Optional;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import app.entity.Cliente;
 import app.entity.Produto;
 import app.entity.Venda;
 import app.repository.VendaRepository;
@@ -18,11 +19,20 @@ public class VendaService {
 
 	@Autowired
 	ProdutoService produtoService;
+	
+	@Autowired
+	ClienteService clienteService;
+	
 
 	public String save(Venda venda) {
+		venda.setValorTotal(this.calcularTotal(venda.getProdutos()));
 		
-		double valorTotal = this.calcularTotal(venda.getProdutos());
-		venda.setValorTotal(valorTotal);
+		if(idadeCliente(venda.getCliente())) {
+			if(venda.getValorTotal() > 500) {
+				throw new RuntimeException("Cliente menor de idade não pode comprar acima de 500 reais");
+			}
+		}
+		
 		this.vendaRepository.save(venda);
 		return "Venda cadastrada com sucesso.";
 
@@ -30,8 +40,7 @@ public class VendaService {
 
 	public String update(Venda venda, long id) {
 		venda.setId(id);
-		double valorTotal = this.calcularTotal(venda.getProdutos());
-		venda.setValorTotal(valorTotal);
+		venda.setValorTotal(this.calcularTotal(venda.getProdutos()));
 		this.vendaRepository.save(venda);
 		return "Venda Atualizada com sucesso.";
 	}
@@ -65,7 +74,16 @@ public class VendaService {
 
 		return valorTotal;
 	}
-
+	
+	private boolean idadeCliente (Cliente cliente) {
+		cliente = this.clienteService.findById(cliente.getId());
+		if(cliente.getIdade() < 18) {
+			return true;
+		} else {
+			return false;
+		}
+	}
+	
 	public List<Venda> findByCliente(String nome) {
 		return this.vendaRepository.findByClienteNomeContaining(nome);
 	}
