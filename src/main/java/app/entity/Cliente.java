@@ -46,7 +46,7 @@ public class Cliente {
     @Email
     private String email;
     
-    @Pattern(regexp = "^[0-9]{5}-?[0-9]{3}$")
+    @Pattern(regexp = "^\\d{5}-\\d{3}$")
     private String cep;
     
     @NotBlank
