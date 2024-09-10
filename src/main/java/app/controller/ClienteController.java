@@ -18,7 +18,7 @@ import app.entity.Cliente;
 import app.service.ClienteService;
 
 @RestController
-@RequestMapping("/app/cliente")
+@RequestMapping("/api/cliente")
 public class ClienteController {
 
 	@Autowired
@@ -26,13 +26,16 @@ public class ClienteController {
 
 	@PostMapping("/save")
 	public ResponseEntity<String> save(@RequestBody Cliente cliente) {
-		try {
-			String mensagem = this.clienteService.save(cliente);
-			return new ResponseEntity<>(mensagem, HttpStatus.OK);
-
-		} catch (Exception e) {
-			return new ResponseEntity<>(null, HttpStatus.BAD_REQUEST);
-		}
+	    if (cliente == null) {
+	        return new ResponseEntity<>("Não há dados para salvar.", HttpStatus.BAD_REQUEST);
+	    }
+	    try {
+	        String mensagem = this.clienteService.save(cliente);
+	        return new ResponseEntity<>(mensagem, HttpStatus.OK);
+	        
+	    } catch (Exception e) {
+	        return new ResponseEntity<>("Erro ao salvar os dados.", HttpStatus.BAD_REQUEST);
+	    }
 	}
 
 	@PutMapping("/update/{id}")
@@ -49,8 +52,13 @@ public class ClienteController {
 	@GetMapping("/findById/{id}")
 	public ResponseEntity<Cliente> findById(@PathVariable long id) {
 		try {
-			Cliente cliente = this.clienteService.findById(id);
-			return new ResponseEntity<>(cliente, HttpStatus.OK);
+			if(id >= 0) {
+				Cliente cliente = this.clienteService.findById(id);
+				return new ResponseEntity<>(cliente, HttpStatus.OK);
+			} else {
+				return new ResponseEntity<>(null, HttpStatus.BAD_REQUEST);
+			}
+			
 
 		} catch (Exception e) {
 			return new ResponseEntity<>(null, HttpStatus.BAD_REQUEST);
@@ -71,8 +79,14 @@ public class ClienteController {
 	@DeleteMapping("/delete/{id}")
 	public ResponseEntity<String> deleteById(@PathVariable long id) {
 		try {
+			Cliente cliente = this.clienteService.findById(id);
+			if (cliente == null) {
+				return new ResponseEntity<>(null, HttpStatus.BAD_REQUEST);
+
+			}
 			String mensagem = this.clienteService.delete(id);
 			return new ResponseEntity<>(mensagem, HttpStatus.OK);
+
 
 		} catch (Exception e) {
 			return new ResponseEntity<>(null, HttpStatus.BAD_REQUEST);

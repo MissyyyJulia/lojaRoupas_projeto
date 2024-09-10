@@ -14,12 +14,17 @@ public class ClienteService {
 
 	@Autowired
 	ClienteRepository clienteRepository;
-
+	
 	public String save(Cliente cliente) {
-
-		this.clienteRepository.save(cliente);
-		return "Cliente cadastrado com sucesso.";
-
+		
+		if(cliente != null) {
+			this.clienteRepository.save(cliente);
+			return "Cliente cadastrado com sucesso.";
+		} else {
+			return "Não há dados para salvar.";
+		}
+	
+	
 	}
 
 	public String update(Cliente cliente, long id) {

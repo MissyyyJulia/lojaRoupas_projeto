@@ -26,6 +26,9 @@ public class FuncionarioController {
 
 	@PostMapping("/save")
 	public ResponseEntity<String> save(@RequestBody Funcionario funcionario) {
+		if (funcionario == null) {
+			return new ResponseEntity<>("Não há dados para salvar.", HttpStatus.BAD_REQUEST);
+		}
 		try {
 			String mensagem = this.funcionarioService.save(funcionario);
 			return new ResponseEntity<>(mensagem, HttpStatus.OK);
@@ -49,8 +52,12 @@ public class FuncionarioController {
 	@GetMapping("/findById/{id}")
 	public ResponseEntity<Funcionario> findById(@PathVariable long id) {
 		try {
-			Funcionario funcionario = this.funcionarioService.findById(id);
-			return new ResponseEntity<>(funcionario, HttpStatus.OK);
+			if (id >= 0) {
+				Funcionario funcionario = this.funcionarioService.findById(id);
+				return new ResponseEntity<>(funcionario, HttpStatus.OK);
+			} else {
+				return new ResponseEntity<>(null, HttpStatus.BAD_REQUEST);
+			}
 
 		} catch (Exception e) {
 			return new ResponseEntity<>(null, HttpStatus.BAD_REQUEST);
@@ -72,6 +79,11 @@ public class FuncionarioController {
 	@DeleteMapping("/delete/{id}")
 	public ResponseEntity<String> delete(@PathVariable long id) {
 		try {
+			Funcionario funcionario = this.funcionarioService.findById(id);
+			if (funcionario == null) {
+				return new ResponseEntity<>(null, HttpStatus.BAD_REQUEST);
+
+			}
 			String mensagem = this.funcionarioService.delete(id);
 			return new ResponseEntity<>(mensagem, HttpStatus.OK);
 

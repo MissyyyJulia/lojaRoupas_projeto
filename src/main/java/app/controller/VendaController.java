@@ -27,6 +27,9 @@ public class VendaController {
 
 	@PostMapping("/save")
 	public ResponseEntity<String> save(@RequestBody Venda venda) {
+		if (venda == null) {
+			return new ResponseEntity<>("Não há dados para salvar.", HttpStatus.BAD_REQUEST);
+		}
 		try {
 			String mensagem = this.vendaService.save(venda);
 			return new ResponseEntity<>(mensagem, HttpStatus.OK);
@@ -52,8 +55,12 @@ public class VendaController {
 	@GetMapping("/findById/{id}")
 	public ResponseEntity<Venda> findById(@PathVariable long id) {
 		try {
-			Venda venda = this.vendaService.findById(id);
-			return new ResponseEntity<>(venda, HttpStatus.OK);
+			if (id >= 0) {
+				Venda venda = this.vendaService.findById(id);
+				return new ResponseEntity<>(venda, HttpStatus.OK);
+			} else {
+				return new ResponseEntity<>(null, HttpStatus.BAD_REQUEST);
+			}
 
 		} catch (Exception e) {
 			return new ResponseEntity<>(null, HttpStatus.BAD_REQUEST);
@@ -74,6 +81,11 @@ public class VendaController {
 	@DeleteMapping("/delete/{id}")
 	public ResponseEntity<String> deleteById(@PathVariable long id) {
 		try {
+			Venda venda = this.vendaService.findById(id);
+			if (venda == null) {
+				return new ResponseEntity<>(null, HttpStatus.BAD_REQUEST);
+
+			}
 			String mensagem = this.vendaService.delete(id);
 			return new ResponseEntity<>(mensagem, HttpStatus.OK);
 

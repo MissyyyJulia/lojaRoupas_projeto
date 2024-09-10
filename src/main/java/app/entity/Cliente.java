@@ -40,7 +40,7 @@ public class Cliente {
     @CPF
     private String cpf;
     
-    @Pattern(regexp = "^\\(\\d{2}\\) \\d{4,5}-\\d{4}$")
+    //@Pattern(regexp = "^\\(\\d{2}\\) \\d{4,5}-\\d{4}$")
     private String telefone;
     
     @Email
