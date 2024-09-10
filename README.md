@@ -1,4 +1,4 @@
-# BACK-END COM FRAMEWORKS (SPRING) PROF. WELLINGTON DE OLIVEIRA
+]# BACK-END COM FRAMEWORKS (SPRING) PROF. WELLINGTON DE OLIVEIRA
 
 # exercício de fixação sts4 e postman | loja de roupas
 
@@ -39,3 +39,5 @@ conteúdos vistos em sala de aula acerca de desenvolvimento back-end com spring
 - o nome do cliente deve conter pelo menos 2 palavras e um espaço  ✅
 - os telefones devem seguir o padrão (XX) XXXX-XXXX ou (XX) XXXXX-XXXX ✅
 - ao salvar uma venda, caso o cliente seja menor de 18 anos, o valor total máximo deve ser de 500 reais. caso o valor esteja acima, não permita a persistência ✅
+
+- Covarage atual: 57%
